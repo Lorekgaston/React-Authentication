@@ -1,0 +1,28 @@
+.header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: rgb(101, 192, 78);
+  justify-content: space-between;
+  position: static;
+  top: 0;
+  z-index: 100;
+  &__logo {
+    margin: 0 10px;
+    margin-top: 5px;
+    border-radius: 24px;
+  }
+  &__nav {
+    display: flex;
+    justify-content: space-evenly;
+    &-option {
+      display: flex;
+      justify-content: center;
+      margin-left: 10px;
+      margin-right: 10px;
+      & span {
+        font-weight: 600;
+      }
+    }
+  }
+}
