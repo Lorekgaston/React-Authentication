@@ -2,7 +2,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   background-color: rgb(234, 237, 237);
   &__container {
@@ -66,5 +66,11 @@
       border: none;
       outline: none;
     }
+  }
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
