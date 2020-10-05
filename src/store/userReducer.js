@@ -1,61 +1,62 @@
 export const intialState = {
-  email: "",
-  password: "",
-  passwordConfirm: "",
-  userName: "",
+  email: '',
+  password: '',
+  passwordConfirm: '',
+  userName: '',
   isLoading: false,
-  error: "",
+  error: '',
   isLoggedIn: false,
   token: undefined,
-  user: undefined,
+  user: undefined
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "field": {
+    case 'field': {
       return {
         ...state,
-        [action.field]: action.value,
+        [action.field]: action.value
       };
     }
-    case "login": {
+    case 'login': {
       return {
         ...state,
         isLoading: true,
-        error: "",
+        error: ''
       };
     }
-    case "success": {
+    case 'success': {
       console.log(action);
       return {
         ...state,
         isLoggedIn: true,
         token: action.token,
-        user: action.user,
+        user: action.user
       };
     }
-    case "error": {
+    case 'error': {
       return {
         ...state,
         error: action.message,
         isLoading: false,
-        email: "",
-        password: "",
-        passwordConfirm: "",
-        userName: "",
+        isLoggedIn: false,
+        email: '',
+        password: '',
+        passwordConfirm: '',
+        userName: ''
       };
     }
-    case "logout": {
+    case 'logout': {
       return {
         ...state,
         isLoggedIn: false,
         isLoading: false,
-        email: "",
-        password: "",
-        passwordConfirm: "",
-        userName: "",
+        email: '',
+        password: '',
+        passwordConfirm: '',
+        userName: '',
         token: undefined,
-        user: undefined,
+        user: undefined
       };
     }
 

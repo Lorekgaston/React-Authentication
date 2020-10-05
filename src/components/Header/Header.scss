@@ -1,12 +1,24 @@
 .header {
   height: 60px;
-  display: flex;
-  align-items: center;
-  background-color: rgb(101, 192, 78);
-  justify-content: space-between;
+  // display: flex;
+  // align-items: center;
+  // background-color: rgb(101, 192, 78);
+  background-image: linear-gradient(135deg, rgb(47, 89, 37), rgb(101, 192, 78));
+
+  // justify-content: center;
   position: static;
   top: 0;
   z-index: 100;
+  box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2);
+  &__container {
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   &__logo {
     margin: 0 10px;
     margin-top: 5px;
@@ -29,4 +41,12 @@
     text-decoration: none;
     color: #fff;
   }
+}
+
+.MuiTypography-root {
+  align-self: center;
+  margin: none;
+  margin-left: 15px;
+  margin-right: 15px;
+  text-transform: capitalize;
 }

@@ -1,42 +1,42 @@
-import Axios from "axios";
-import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import { useLoginState } from "../../store/context";
-import "./Signup.scss";
+import Axios from 'axios';
+import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { useLoginState } from '../../store/context';
+import './Signup.scss';
 
 const Signup = () => {
   const [state, dispatch] = useLoginState();
   const history = useHistory();
   const { userName, email, password, passwordConfirm, error } = state;
 
-  const createUser = async (e) => {
+  const createUser = async e => {
     e.preventDefault();
     try {
       const newUser = {
         userName,
         email,
         password,
-        passwordConfirm,
+        passwordConfirm
       };
-      await Axios.post("http://127.0.0.1:9000/api/v1/users/signup", newUser);
+      await Axios.post('http://127.0.0.1:9000/api/v1/users/signup', newUser);
       const loginRes = await Axios.post(
-        "http://127.0.0.1:9000/api/v1/users/login",
+        'http://127.0.0.1:9000/api/v1/users/login',
         {
           email,
-          password,
+          password
         }
       );
       console.log(loginRes);
       dispatch({
-        type: "success",
+        type: 'success',
         token: loginRes.data.token,
-        user: loginRes.data.user,
+        user: loginRes.data.user
       });
-      localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/login");
+      localStorage.setItem('auth-token', loginRes.data.token);
+      //history.push('/login');
     } catch (err) {
       console.log(err.response.data.message);
-      dispatch({ type: "error", message: err.response.data.message });
+      dispatch({ type: 'error', message: err.response.data.message });
     }
   };
   return (
@@ -50,11 +50,11 @@ const Signup = () => {
             <input
               type="text"
               value={userName}
-              onChange={(e) =>
+              onChange={e =>
                 dispatch({
-                  type: "field",
-                  field: "userName",
-                  value: e.currentTarget.value,
+                  type: 'field',
+                  field: 'userName',
+                  value: e.currentTarget.value
                 })
               }
             />
@@ -64,11 +64,11 @@ const Signup = () => {
             <input
               type="text"
               value={email}
-              onChange={(e) =>
+              onChange={e =>
                 dispatch({
-                  type: "field",
-                  field: "email",
-                  value: e.currentTarget.value,
+                  type: 'field',
+                  field: 'email',
+                  value: e.currentTarget.value
                 })
               }
             />
@@ -78,11 +78,11 @@ const Signup = () => {
             <input
               type="password"
               value={password}
-              onChange={(e) =>
+              onChange={e =>
                 dispatch({
-                  type: "field",
-                  field: "password",
-                  value: e.currentTarget.value,
+                  type: 'field',
+                  field: 'password',
+                  value: e.currentTarget.value
                 })
               }
             />
@@ -92,11 +92,11 @@ const Signup = () => {
             <input
               type="password"
               value={passwordConfirm}
-              onChange={(e) =>
+              onChange={e =>
                 dispatch({
-                  type: "field",
-                  field: "passwordConfirm",
-                  value: e.currentTarget.value,
+                  type: 'field',
+                  field: 'passwordConfirm',
+                  value: e.currentTarget.value
                 })
               }
             />
@@ -104,7 +104,7 @@ const Signup = () => {
           <button className="signup__container-signUpButton">Sign Up</button>
         </form>
         <p>
-          By continuing, you agree to L&L's Conditions of Use and Privacy
+          By continuing, you agree to L&L`s Conditions of Use and Privacy
           Notice.
         </p>
       </div>
