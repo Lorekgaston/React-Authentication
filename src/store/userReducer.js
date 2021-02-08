@@ -6,8 +6,8 @@ export const intialState = {
   isLoading: false,
   error: '',
   isLoggedIn: false,
-  token: undefined,
-  user: undefined
+  token: null,
+  user: null
 };
 
 const reducer = (state, action) => {
@@ -55,8 +55,8 @@ const reducer = (state, action) => {
         password: '',
         passwordConfirm: '',
         userName: '',
-        token: undefined,
-        user: undefined
+        token: null,
+        user: null
       };
     }
 

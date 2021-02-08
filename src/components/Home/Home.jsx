@@ -1,7 +1,14 @@
 import React from 'react';
+import { useLoginState } from '../../store/context';
 
 const Home = () => {
-  return <div></div>;
+  const [state] = useLoginState();
+  const { user, error, isLoggedIn } = state;
+  return (
+    <div>
+      <h1>welcome {user.userName}</h1>
+    </div>
+  );
 };
 
 export default Home;

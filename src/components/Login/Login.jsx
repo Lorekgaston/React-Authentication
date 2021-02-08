@@ -6,7 +6,7 @@ import './Login.scss';
 
 const Login = () => {
   const [state, dispatch] = useLoginState();
-  const { email, password, error, user } = state;
+  const { email, password, error, token } = state;
 
   const onSubmit = async e => {
     e.preventDefault();
@@ -32,7 +32,7 @@ const Login = () => {
   };
   return (
     <div className="login">
-      {user ? (
+      {token ? (
         <Redirect to="/profile" />
       ) : (
         <div className="login__container">

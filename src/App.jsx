@@ -15,7 +15,8 @@ import AccountSettings from './components/AccountSettings/AccountSettings';
 function App() {
   const [state, dispatch] = useLoginState();
   // const history = useHistory();
-  const { email, password, isLoading, error, isLoggedIn } = state;
+  const { isLoggedIn } = state;
+  console.log(state);
   useEffect(() => {
     const checkIfLogged = async () => {
       try {
@@ -33,7 +34,6 @@ function App() {
             }
           }
         );
-        console.log(tokenRes.data);
         if (tokenRes.data) {
           const userRes = await Axios.get(
             'http://127.0.0.1:9000/api/v1/users/user',
@@ -49,7 +49,7 @@ function App() {
       }
     };
     checkIfLogged();
-  }, [dispatch]);
+  }, []);
 
   return (
     <Router>

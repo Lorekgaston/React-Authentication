@@ -28,6 +28,7 @@ const HeaderMenu = ({ dispatch, handleMenuItem, open, close, anchorEl }) => {
   const logout = () => {
     dispatch({ type: 'logout' });
     localStorage.setItem('auth-token', '');
+    history.push('./login');
   };
   return (
     <div>
@@ -58,7 +59,7 @@ const HeaderMenu = ({ dispatch, handleMenuItem, open, close, anchorEl }) => {
         <Divider variant="inset" component="li" />
         <MenuItem
           className={classes.menuButton}
-          onClick={() => history.push('/')}
+          // onClick={() => history.push('/')}
         >
           <ListItemIcon>
             <MessageIcon fontSize="medium" />
@@ -76,7 +77,7 @@ const HeaderMenu = ({ dispatch, handleMenuItem, open, close, anchorEl }) => {
           <ListItemText primary="Account Settings" />
         </MenuItem>
         <Divider light />
-        <MenuItem className={classes.menuButton} onClick={logout}>
+        <MenuItem className={classes.menuButton} onClick={() => logout()}>
           {/* <ListItemIcon>
                     <SendIcon fontSize="small" />
                   </ListItemIcon> */}

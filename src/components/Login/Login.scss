@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background-color: rgb(234, 237, 237);
+  background-color: #eaeded;
   &__container {
     background-color: #ffffff;
     width: 300px;
@@ -42,8 +42,8 @@
       height: 35px;
       border: 1px solid;
       border-color: #65c04e, #458834, #366829;
-      font-size: 20px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 800;
       cursor: pointer;
       outline: none;
       &:active {

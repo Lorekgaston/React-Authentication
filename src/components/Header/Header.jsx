@@ -23,6 +23,7 @@ const Header = () => {
     setAnchorEl(null);
     history.push(url);
   };
+  console.log(user);
   return (
     <div className="header">
       <div className="header__container">
@@ -49,7 +50,7 @@ const Header = () => {
             <>
               {' '}
               <div className="header__nav-option">
-                <Typography>Gaston</Typography>
+                <Typography>{user.userName}</Typography>
                 <IconButton
                   aria-label="account of current user"
                   aria-controls="menu-appbar"
@@ -57,7 +58,7 @@ const Header = () => {
                   onClick={handleMenu}
                   color="inherit"
                 >
-                  <Avatar />
+                  <Avatar src={user?.photo} />
                 </IconButton>
                 <HeaderMenu
                   dispatch={dispatch}

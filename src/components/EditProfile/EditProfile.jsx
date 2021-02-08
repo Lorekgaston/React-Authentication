@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,7 +13,7 @@ const useStyles = makeStyles({
 const EditProfile = () => {
   const classes = useStyles();
   const [fileInput, setFileInput] = useState('');
-  const [selectedFile, setSelectedFile] = useState('');
+  // const [selectedFile, setSelectedFile] = useState('');
   const [previewSource, setPreviewSource] = useState('');
   const handleFileChange = e => {
     const file = e.target.files[0];
@@ -26,12 +26,13 @@ const EditProfile = () => {
       setPreviewSource(reader.result);
     };
   };
-  const handleSubmitFile = e => {
-    e.preventDefault();
+  const handleSubmitFile = () => {
+    // e.preventDefault();
 
     if (!previewSource) return;
     uploadImage(previewSource);
   };
+
   const uploadImage = async base64EncodedImage => {
     try {
       let token = localStorage.getItem('auth-token');
@@ -43,6 +44,7 @@ const EditProfile = () => {
         }
       );
       const { imageUrl } = res.data;
+      console.log(imageUrl);
       Axios.patch(
         'http://127.0.0.1:9000/api/v1/users/updateUser',
         {
@@ -56,6 +58,10 @@ const EditProfile = () => {
       console.log(err);
     }
   };
+  // useEffect(() => {
+
+  // })
+
   return (
     <div className="editProfile">
       <TextField

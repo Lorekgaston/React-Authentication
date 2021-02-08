@@ -33,7 +33,7 @@ const Signup = () => {
         user: loginRes.data.user
       });
       localStorage.setItem('auth-token', loginRes.data.token);
-      //history.push('/login');
+      history.push('/home');
     } catch (err) {
       console.log(err.response.data.message);
       dispatch({ type: 'error', message: err.response.data.message });
