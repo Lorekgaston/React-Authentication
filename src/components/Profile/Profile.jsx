@@ -1,5 +1,4 @@
 import React from 'react';
-import { useLoginState } from '../../store/context';
 import { Redirect } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -19,7 +18,7 @@ const Profile = () => {
   console.log(user);
   return (
     <div className="profile">
-      {user ? (
+      {/* {user ? (
         <Redirect to="/login" />
       ) : (
         <>
@@ -33,7 +32,7 @@ const Profile = () => {
             </div>
           </div>
         </>
-      )}
+      )} */}
     </div>
   );
 };
