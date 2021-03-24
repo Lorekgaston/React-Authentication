@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { loginAction } from '../../redux/actions/login';
+import { userAction } from '../../redux/actions/user';
 import validate from '../../helpers/validate';
 import './Login.scss';
 
@@ -18,6 +18,11 @@ const Login = () => {
   const [submmitted, setSubmmitted] = useState(false);
   const dispatch = useDispatch();
   const location = useLocation();
+
+  useEffect(() => {
+    dispatch(userAction.logOut());
+  }, []);
+
   const handleChange = e => {
     const { name, value } = e.target;
     setValues(values => ({ ...values, [name]: value }));
@@ -26,10 +31,6 @@ const Login = () => {
       [name]: true
     });
   };
-
-  useEffect(() => {
-    dispatch(loginAction.logOut());
-  }, []);
 
   const handleBlur = e => {
     const { name, value } = e.target;
@@ -69,14 +70,14 @@ const Login = () => {
     setTouched(formValidation.touched);
 
     if (
-      !Object.values(formValidation.error).length && // errors object is empty
+      !Object.values(formValidation.error).length &&
       Object.values(formValidation.touched).length ===
-        Object.values(values).length && // all fields were touched
+        Object.values(values).length &&
       Object.values(formValidation.touched).every(t => t === true)
     ) {
       setSubmmitted(true);
       const { from } = location.state || { from: { pathname: '/' } };
-      dispatch(loginAction.login(values, from));
+      dispatch(userAction.login(values, from));
     }
   };
   return (
@@ -147,7 +148,7 @@ const Login = () => {
       <br />
       <div className="login__footer">
         <p>You don`t have an account?</p>
-        <Link to="/signup">
+        <Link to="/register">
           <button className="login__registerButton">Create Acount</button>
         </Link>
       </div>

@@ -4,8 +4,9 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
 import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
 
-import Login from './pages/Login/Login';
 import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
+import Register from './pages/Signup/Register';
 
 import './App.scss';
 
@@ -15,6 +16,7 @@ function App() {
       <Switch>
         <PrivateRoute exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
       </Switch>
     </ThemeProvider>
   );

@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const BASE_URL = 'http://127.0.0.1:9000/api/v1/users/';
 
-const register = newUser => {
-  return axios.post(`${BASE_URL}signup`, newUser);
+const register = async newUser => {
+  return await axios.post(`${BASE_URL}signup`, newUser);
 };
 
 const login = async loginUser => {

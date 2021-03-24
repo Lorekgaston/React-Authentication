@@ -23,9 +23,24 @@ const passwordValidation = password => {
   }
 };
 
+const usernameValidation = userName => {
+  if (
+    /^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(userName)
+  ) {
+    return null;
+  }
+  if (userName.trim() === '') {
+    return 'userName is required';
+  }
+  return 'invalid userName';
+};
+
 const validate = {
+  userName: usernameValidation,
   email: emailValidation,
   password: passwordValidation
 };
 
 export default validate;
+
+// (?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])
