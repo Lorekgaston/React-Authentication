@@ -24,21 +24,31 @@ const passwordValidation = password => {
 };
 
 const usernameValidation = userName => {
-  if (
-    /^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(userName)
-  ) {
-    return null;
+  // if (
+  //   /^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(userName)
+  // ) {
+  //   return null;
+  // }
+  if (userName === '') {
+    return 'Username is required';
   }
-  if (userName.trim() === '') {
-    return 'userName is required';
+  if (userName.length <= 3) {
+    return 'Username should contain atleast 3 characters';
   }
-  return 'invalid userName';
+  if (userName.length >= 20) {
+    return 'Username cannot contain more than 20 characters';
+  }
+  return null;
 };
 
+const passwordConfirmValidate = passwordConfirm => {
+  return 'Passwords do not match. Please try again';
+};
 const validate = {
   userName: usernameValidation,
   email: emailValidation,
-  password: passwordValidation
+  password: passwordValidation,
+  passwordConfirm: passwordConfirmValidate
 };
 
 export default validate;

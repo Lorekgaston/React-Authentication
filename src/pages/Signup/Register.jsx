@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { userAction } from '../../redux/actions/user';
@@ -20,16 +20,19 @@ const Register = () => {
   const [error, setError] = useState({});
   const dispatch = useDispatch();
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setValues(values => ({ ...values, [name]: value }));
-    setTouched({
-      ...values,
-      [name]: true
-    });
-  };
+  const handleChange = useCallback(
+    e => {
+      const { name, value } = e.target;
+      setValues(values => ({ ...values, [name]: value }));
+      setTouched({
+        ...values,
+        [name]: true
+      });
+    },
+    [values]
+  );
   const handleBlur = e => {
-    const { name, value } = e.target;
+    const { name, value, type } = e.target;
 
     const { [name]: removedError, ...rest } = error;
 
@@ -74,7 +77,7 @@ const Register = () => {
           <div className="Register__inputContainer">
             <input
               className="Register__inputContainer_input"
-              type="text"
+              type="email"
               id="email-input"
               placeholder="enter your email"
               name="email"
