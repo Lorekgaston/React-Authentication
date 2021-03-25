@@ -1,19 +1,25 @@
 .InputContainer {
   display: flex;
   flex-direction: column;
-  padding: 5px;
+  margin-top: 1.4em !important;
+  transition: height 0.5s ease-in-out;
+  will-change: height;
   & > label {
+    display: flex;
+    justify-content: space-between;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 13px;
+    color: #181818;
     padding: 0 1px;
   }
   &__input {
     margin-bottom: 10px;
-    padding: 10px;
-    margin: 5px 0;
-    outline: none;
+    padding: 5px 10px;
+    margin: 2px 0;
+    // outline: none;
+    outline-color: var(--color-blue);
     border: 1px solid lightgrey;
-    border-radius: 10px;
+    border-radius: 5px;
   }
 }
 .ErrorMessage {
@@ -27,9 +33,25 @@
 
 .inputError {
   outline: none;
-  box-shadow: 0px 0px 3px 1px rgba(255, 15, 15, 0.823);
-  border: 1px solid rgba(255, 15, 15, 0.823);
-  border-radius: 10px;
+  box-shadow: 0px 0px 4px 0px rgba(255, 15, 15, 0.823);
+  border: 1.5px solid rgba(255, 15, 15, 0.823);
+  border-radius: 5px;
+}
+
+.inputValid {
+  outline: none;
+  box-shadow: 0px 0px 4px 0px rgba(22, 197, 115, 0.85);
+  border: 1.5px solid rgba(22, 197, 115, 0.85);
+}
+
+.MuiSvgIcon-root.ErrorIcon {
+  font-size: 1rem;
+  color: rgb(255, 15, 15);
+}
+
+.MuiSvgIcon-root.CheckIcon {
+  font-size: 1rem;
+  color: var(--color-dark-green);
 }
 
 // &__inputContainer {

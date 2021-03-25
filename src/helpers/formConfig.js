@@ -42,8 +42,8 @@ const createFromConfig = (
 
 export const registerForm = {
   userName: {
-    ...createFromConfig('text', 'User Name', 'userName', 'Choose an user name'),
-    validateRultes: [
+    ...createFromConfig('text', 'Username', 'userName', 'Choose an username'),
+    validateRules: [
       requiredRule('User name'),
       minLengthRule('User name', 3),
       maxLengthRule('User name', 20)
@@ -51,7 +51,7 @@ export const registerForm = {
   },
   email: {
     ...createFromConfig('email', 'Email', 'email', 'example@example.com'),
-    validateRultes: [requiredRule('email'), validEmailRule()]
+    validateRules: [requiredRule('email'), validEmailRule()]
   },
   password: {
     ...createFromConfig(
@@ -60,7 +60,7 @@ export const registerForm = {
       'password',
       'Choose a password'
     ),
-    validateRultes: [
+    validateRules: [
       requiredRule('password'),
       minLengthRule('Password', 8),
       maxLengthRule('Password', 40)
@@ -73,6 +73,21 @@ export const registerForm = {
       'passwordConfirm',
       'Rewrite your password'
     ),
-    validateRultes: [requiredRule('Confirm password'), passwodMatchRule()]
+    validateRules: [requiredRule('Confirm password'), passwodMatchRule()]
+  }
+};
+
+export const loginForm = {
+  userName: {
+    ...createFromConfig('text', 'Username', 'userName', 'Enter your username')
+  },
+  password: {
+    ...createFromConfig(
+      'password',
+      'Password',
+      'password',
+      'Enter your password'
+    ),
+    validateRules: [requiredRule('password')]
   }
 };

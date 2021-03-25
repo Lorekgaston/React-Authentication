@@ -36,7 +36,7 @@ const Register = () => {
 
   const isInputFieldValid = useCallback(
     inputField => {
-      for (const rule of inputField.validateRultes) {
+      for (const rule of inputField.validateRules) {
         if (!rule.validate(inputField.value, form)) {
           inputField.errorMessage = rule.message;
           return false;
@@ -55,18 +55,20 @@ const Register = () => {
         isValid = false;
         break;
       }
-      return isValid;
     }
+    return isValid;
   }, [form]);
 
   const handleSubmit = e => {
     e.preventDefault();
+    const newForm = { ...form };
 
     let newUser = {};
-    for (let obj in form) {
-      Object.assign(newUser, { [obj]: form[obj].value });
+    for (let values in form) {
+      Object.assign(newUser, { [values]: newForm[values].value });
     }
     dispatch(userAction.register(newUser));
+    console.log(newUser);
   };
 
   return (
@@ -75,6 +77,10 @@ const Register = () => {
         <h3>Sign up</h3>
         <form onSubmit={handleSubmit}>
           {renderFormInputs()}
+          <p>
+            By clicking Sign Up, you are indicating that you have read and
+            acknowledge the Terms of Service and Privacy Notice.
+          </p>
           <button
             className="Register__container-registerButton"
             type="submit"
@@ -83,10 +89,6 @@ const Register = () => {
             Sign Up
           </button>
         </form>
-        <p>
-          By continuing, you agree to L&L`s Conditions of Use and Privacy
-          Notice.
-        </p>
       </div>
       <div className="Register__footer">
         <p>Already have an account?</p>

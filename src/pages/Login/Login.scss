@@ -7,20 +7,24 @@
   background-color: #eaeded;
   &__container {
     background-color: #ffffff;
-    width: 300px;
+    width: 350px;
     height: fit-content;
     display: flex;
     flex-direction: column;
-
-    padding: 30px;
+    padding: 2em 1em;
     border: 1px solid lightgray;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
 
     & > h3 {
-      font-weight: 600;
-      margin-bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.3rem;
+      padding: 0.4em 0;
+      margin-bottom: 1em;
       align-self: center;
+      border-bottom: 1px solid var(--color-green);
     }
     & > form {
       display: flex;
@@ -28,63 +32,46 @@
       & > h5 {
         margin: 10px 0;
       }
-    }
-    & > p {
-      margin: 15px;
-      font-size: 12px;
+      & > p {
+        font-size: 0.7rem;
+        text-align: center;
+        margin-top: 1.6em;
+      }
     }
     &-signInButton {
-      margin-top: 10px;
-      background-color: rgb(101, 192, 78);
-      color: #ffffff;
+      margin-top: 1.4rem;
+      background-color: var(--color-green);
+      color: var(--color-font-green);
       border-radius: 10px;
       width: 100%;
-      height: 35px;
+      height: 2.1em;
       border: 1px solid;
-      border-color: #65c04e, #458834, #366829;
-      font-size: 15px;
-      font-weight: 800;
+      font-size: 1rem;
+      font-weight: 600;
       cursor: pointer;
       outline: none;
+      will-change: transform, box-shadow;
       &:hover {
-        transition: transform 0.2s ease;
+        transition: transform 0.2s ease-in-out;
         transform: translateY(-0.5px);
         box-shadow: 0px 0.5px 1px 0px rgba(101, 192, 78, 0.4);
       }
       &:active {
-        transform: translateY(1px);
+        transform: translateY(0px);
+        box-shadow: none;
+      }
+      &:disabled {
+        background-color: rgba(158, 158, 158, 0.4);
+        &:hover {
+          transform: none;
+          box-shadow: none;
+        }
       }
     }
     &_serverError {
       color: rgba(255, 15, 15, 0.8);
       font-weight: 600;
       font-size: 12px;
-    }
-  }
-  &__inputContainer {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid lightgrey;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    &_input {
-      margin-bottom: 10px;
-      width: 90%;
-      padding: 5px;
-      margin: 5px;
-      border: none;
-      outline: none;
-    }
-    &_error {
-      position: absolute;
-      top: 40px;
-      left: 0;
-      color: rgb(255, 15, 15);
-      font-weight: 600;
-      font-size: 11px;
     }
   }
   &__footer {
