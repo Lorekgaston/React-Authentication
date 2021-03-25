@@ -2,132 +2,84 @@ import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { userAction } from '../../redux/actions/user';
-import validate from '../../helpers/validate';
+import { registerForm } from '../../helpers/formConfig';
 
 import './Register.scss';
 
 const Register = () => {
-  const { isLoading, errorMessage, isError } = useSelector(
-    state => state.register
-  );
-  const [values, setValues] = useState({
-    userName: '',
-    email: '',
-    password: '',
-    passwordConfirm: ''
-  });
-  const [touched, setTouched] = useState({});
-  const [error, setError] = useState({});
   const dispatch = useDispatch();
+  const [form, setForm] = useState(registerForm);
 
-  const handleChange = useCallback(
-    e => {
-      const { name, value } = e.target;
-      setValues(values => ({ ...values, [name]: value }));
-      setTouched({
-        ...values,
-        [name]: true
-      });
-    },
-    [values]
-  );
-  const handleBlur = e => {
-    const { name, value, type } = e.target;
-
-    const { [name]: removedError, ...rest } = error;
-
-    let newError = validate[name](value);
-
-    setError({
-      ...rest,
-      ...(newError && { [name]: touched[name] && newError })
+  const renderFormInputs = () => {
+    return Object.values(form).map(inputObj => {
+      const { value, label, errorMessage, valid, renderInput } = inputObj;
+      return renderInput(handleChange, value, valid, errorMessage, label);
     });
   };
+  const handleChange = e => {
+    const { name, value } = e.target;
+    const inputObj = { ...form[name] };
+
+    inputObj.value = value;
+
+    const isValidInput = isInputFieldValid(inputObj);
+
+    if (isValidInput && !inputObj.valid) {
+      inputObj.valid = true;
+    } else if (!isValidInput && inputObj.valid) {
+      inputObj.valid = false;
+    }
+
+    inputObj.touched = true;
+    setForm({ ...form, [name]: inputObj });
+  };
+
+  const isInputFieldValid = useCallback(
+    inputField => {
+      for (const rule of inputField.validateRultes) {
+        if (!rule.validate(inputField.value, form)) {
+          inputField.errorMessage = rule.message;
+          return false;
+        }
+      }
+      return true;
+    },
+    [form]
+  );
+  const validateForm = useCallback(() => {
+    let isValid = true;
+    const inputs = Object.values(form);
+
+    for (let i = 0; i < inputs.length; i++) {
+      if (!inputs[i].valid) {
+        isValid = false;
+        break;
+      }
+      return isValid;
+    }
+  }, [form]);
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    // dispatch(userAction.register(values));
+    let newUser = {};
+    for (let obj in form) {
+      Object.assign(newUser, { [obj]: form[obj].value });
+    }
+    dispatch(userAction.register(newUser));
   };
-  console.log(values, touched);
+
   return (
     <div className="Register">
       <div className="Register__container">
         <h3>Sign up</h3>
         <form onSubmit={handleSubmit}>
-          <h5>UserName</h5>
-          <div className="Register__inputContainer">
-            <input
-              className="Register__inputContainer_input"
-              type="text"
-              id="username-input"
-              placeholder="choose username"
-              name="userName"
-              value={values.userName}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {touched.userName && (
-              <span className="Register__inputContainer_error">
-                {error.userName}
-              </span>
-            )}
-          </div>
-          <h5>Email Address</h5>
-          <div className="Register__inputContainer">
-            <input
-              className="Register__inputContainer_input"
-              type="email"
-              id="email-input"
-              placeholder="enter your email"
-              name="email"
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {touched.email && (
-              <span className="Register__inputContainer_error">
-                {error.email}
-              </span>
-            )}
-          </div>
-          <h5>Password</h5>
-          <div className="Register__inputContainer">
-            <input
-              className="Register__inputContainer_input"
-              type="password"
-              id="password-input"
-              placeholder="choose a password"
-              name="password"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {touched.password && (
-              <span className="Register__inputContainer_error">
-                {error.password}
-              </span>
-            )}
-          </div>
-          <h5>Confirm Password</h5>
-          <div className="Register__inputContainer">
-            <input
-              className="Register__inputContainer_input"
-              type="password"
-              id="passwordConfirm-input"
-              placeholder="rewrite your password"
-              name="passwordConfirm"
-              value={values.passwordConfirm}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {touched.passwordConfirm && (
-              <span className="Register__inputContainer_error">
-                {error.passwordConfirm}
-              </span>
-            )}
-          </div>
-          <button className="Register__container-registerButton">
+          {renderFormInputs()}
+          <button
+            className="Register__container-registerButton"
+            type="submit"
+            disabled={!validateForm()}
+          >
             Sign Up
           </button>
         </form>

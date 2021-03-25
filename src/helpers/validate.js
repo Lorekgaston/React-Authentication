@@ -1,56 +1,46 @@
-const emailValidation = email => {
-  if (
-    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
-      email
-    )
-  ) {
-    return null;
-  }
-  if (email.trim() === '') {
-    return 'Email is required';
-  }
-  return 'Please enter a valid email';
-};
-const passwordValidation = password => {
-  if (password.length >= 8) {
-    return null;
-  }
-  if (password === '') {
-    return 'Password is required';
-  }
-  if (password.length <= 7) {
-    return 'Password must be at least 8 characters';
-  }
+const validationRule = (ruleName, errorMessage, cb) => {
+  return {
+    name: ruleName,
+    message: errorMessage,
+    validate: cb
+  };
 };
 
-const usernameValidation = userName => {
-  // if (
-  //   /^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(userName)
-  // ) {
-  //   return null;
-  // }
-  if (userName === '') {
-    return 'Username is required';
-  }
-  if (userName.length <= 3) {
-    return 'Username should contain atleast 3 characters';
-  }
-  if (userName.length >= 20) {
-    return 'Username cannot contain more than 20 characters';
-  }
-  return null;
+export const requiredRule = inputName => {
+  return validationRule(
+    'required',
+    `${inputName} required`,
+    (value, formObj) => value.length !== 0
+  );
 };
-
-const passwordConfirmValidate = passwordConfirm => {
-  return 'Passwords do not match. Please try again';
+export const minLengthRule = (inputName, minCharacters) => {
+  return validationRule(
+    'minLength',
+    `${inputName} should contain atleast ${minCharacters} characters`,
+    (value, formObj) => value.length >= minCharacters
+  );
 };
-const validate = {
-  userName: usernameValidation,
-  email: emailValidation,
-  password: passwordValidation,
-  passwordConfirm: passwordConfirmValidate
+export const maxLengthRule = (inputName, maxCharacters) => {
+  return validationRule(
+    'maxLength',
+    `${inputName} cannot contain more than ${maxCharacters} characters`,
+    (inputValue, formObj) => inputValue.length <= maxCharacters
+  );
 };
-
-export default validate;
-
-// (?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])
+export const validEmailRule = () => {
+  return validationRule(
+    'validEmal',
+    `Enter a valid email`,
+    (inputValue, formObj) =>
+      /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+        inputValue
+      )
+  );
+};
+export const passwodMatchRule = () => {
+  return validationRule(
+    'passwordMatch',
+    'paswords does not match',
+    (inputValue, formObj) => inputValue === formObj.password.value
+  );
+};

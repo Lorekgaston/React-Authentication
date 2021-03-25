@@ -1,33 +1,34 @@
 import React from 'react';
+import './InputField.scss';
 
 const InputField = ({
   type,
+  placeholder,
   name,
   label,
   value,
   handleChange,
-  handleBlur,
-  error,
-  touched
+  isValid,
+  errorMessage
 }) => {
+  console.log(errorMessage);
   return (
-    <div
-      className={
-        error.email
-          ? 'login__inputContainer isNotValid'
-          : 'login__inputContainer'
-      }
-    >
+    <div className="InputContainer">
       <label>{label}</label>
       <input
+        className={
+          errorMessage && !isValid
+            ? 'InputContainer__input inputError'
+            : 'InputContainer__input'
+        }
         type={type}
+        placeholder={placeholder}
         name={name}
         value={value}
         onChange={handleChange}
-        onBlur={handleBlur}
       />
-      {error && (
-        <span className="login__inputContainer_error">{error.email}</span>
+      {errorMessage && !isValid && (
+        <span className="ErrorMessage">{errorMessage}</span>
       )}
     </div>
   );
