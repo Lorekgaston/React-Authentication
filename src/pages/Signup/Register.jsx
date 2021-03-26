@@ -1,75 +1,16 @@
-import React, { useState, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { userAction } from '../../redux/actions/user';
 import { registerForm } from '../../helpers/formConfig';
+import useForm from '../../hooks/useForm';
 
 import './Register.scss';
 
 const Register = () => {
-  const dispatch = useDispatch();
-  const [form, setForm] = useState(registerForm);
-
-  const renderFormInputs = () => {
-    return Object.values(form).map(inputObj => {
-      const { value, label, errorMessage, valid, renderInput } = inputObj;
-      return renderInput(handleChange, value, valid, errorMessage, label);
-    });
-  };
-  const handleChange = e => {
-    const { name, value } = e.target;
-    const inputObj = { ...form[name] };
-
-    inputObj.value = value;
-
-    const isValidInput = isInputFieldValid(inputObj);
-
-    if (isValidInput && !inputObj.valid) {
-      inputObj.valid = true;
-    } else if (!isValidInput && inputObj.valid) {
-      inputObj.valid = false;
-    }
-
-    inputObj.touched = true;
-    setForm({ ...form, [name]: inputObj });
-  };
-
-  const isInputFieldValid = useCallback(
-    inputField => {
-      for (const rule of inputField.validateRules) {
-        if (!rule.validate(inputField.value, form)) {
-          inputField.errorMessage = rule.message;
-          return false;
-        }
-      }
-      return true;
-    },
-    [form]
+  const { renderFormInputs, validateForm, handleSubmit } = useForm(
+    registerForm,
+    userAction.register
   );
-  const validateForm = useCallback(() => {
-    let isValid = true;
-    const inputs = Object.values(form);
-
-    for (let i = 0; i < inputs.length; i++) {
-      if (!inputs[i].valid) {
-        isValid = false;
-        break;
-      }
-    }
-    return isValid;
-  }, [form]);
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    const newForm = { ...form };
-
-    let newUser = {};
-    for (let values in form) {
-      Object.assign(newUser, { [values]: newForm[values].value });
-    }
-    dispatch(userAction.register(newUser));
-    console.log(newUser);
-  };
 
   return (
     <div className="Register">

@@ -61,7 +61,10 @@
         box-shadow: none;
       }
       &:disabled {
-        background-color: rgba(158, 158, 158, 0.4);
+        background-color: #f9f9f9;
+        color: #d4d4d4;
+        border: none;
+        cursor: not-allowed;
         &:hover {
           transform: none;
           box-shadow: none;

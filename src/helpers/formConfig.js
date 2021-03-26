@@ -44,9 +44,9 @@ export const registerForm = {
   userName: {
     ...createFromConfig('text', 'Username', 'userName', 'Choose an username'),
     validateRules: [
-      requiredRule('User name'),
-      minLengthRule('User name', 3),
-      maxLengthRule('User name', 20)
+      requiredRule('Username'),
+      minLengthRule('Username', 3),
+      maxLengthRule('Username', 20)
     ]
   },
   email: {
@@ -79,7 +79,8 @@ export const registerForm = {
 
 export const loginForm = {
   userName: {
-    ...createFromConfig('text', 'Username', 'userName', 'Enter your username')
+    ...createFromConfig('text', 'Username', 'userName', 'Enter your username'),
+    validateRules: [requiredRule('Username')]
   },
   password: {
     ...createFromConfig(
