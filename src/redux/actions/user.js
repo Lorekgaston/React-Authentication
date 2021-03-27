@@ -1,7 +1,6 @@
 import { userConstants } from '../constants';
 import { userService } from '../../services/users.service';
 import { history } from '../../helpers/history';
-import axios from 'axios';
 
 const login = (loginUser, from) => {
   const request = user => {
@@ -33,8 +32,8 @@ const logOut = () => {
 };
 
 const register = newUser => {
-  const request = () => {
-    return { type: userConstants.USERS_REGISTER_REQUEST };
+  const request = user => {
+    return { type: userConstants.USERS_REGISTER_REQUEST, user };
   };
   const success = user => {
     return { type: userConstants.USERS_REGISTER_SUCCESS, user };
@@ -44,7 +43,7 @@ const register = newUser => {
   };
 
   return async dispatch => {
-    dispatch(request);
+    dispatch(request(newUser));
     try {
       const _newUser = await userService.register(newUser);
       dispatch(success(_newUser));

@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-const useForm = (objForm, action) => {
+const useForm = (objForm, action, serverError) => {
   const [form, setForm] = useState(objForm);
   const dispatch = useDispatch();
   const location = useLocation();
@@ -47,7 +47,6 @@ const useForm = (objForm, action) => {
   const validateForm = useCallback(() => {
     let isValid = true;
     const inputs = Object.values(form);
-
     for (let i = 0; i < inputs.length; i++) {
       if (!inputs[i].valid) {
         isValid = false;
@@ -59,16 +58,41 @@ const useForm = (objForm, action) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const newForm = { ...form };
+    const completedForm = { ...form };
 
     const { from } = location.state || { from: { pathname: '/' } };
     let userObj = {};
     for (let values in form) {
-      Object.assign(userObj, { [values]: newForm[values].value });
+      Object.assign(userObj, { [values]: completedForm[values].value });
     }
-    dispatch(action(userObj, from));
+    if (validateForm()) {
+      console.log(userObj);
+      dispatch(action(userObj, from));
+    }
   };
-  return { renderFormInputs, validateForm, handleSubmit };
+
+  const validateFromServer = name => {
+    const userObj = { ...form[name] };
+
+    userObj.valid = false;
+    userObj.errorMessage = serverError;
+    console.log('works');
+    setForm({ ...form, [name]: userObj });
+  };
+
+  const handleServerError = () => {
+    if (serverError && serverError.includes('username')) {
+      validateFromServer('userName');
+    }
+    if (serverError && serverError.includes('email')) {
+      validateFromServer('email');
+    }
+    if (serverError && serverError.includes('password')) {
+      validateFromServer('password');
+    }
+    return;
+  };
+  return { renderFormInputs, validateForm, handleSubmit, handleServerError };
 };
 
 export default useForm;

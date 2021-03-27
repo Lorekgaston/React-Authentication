@@ -9,21 +9,28 @@ import './Login.scss';
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { isLoggingIn, serverError } = useSelector(state => state.login);
-  const { renderFormInputs, validateForm, handleSubmit } = useForm(
-    loginForm,
-    userAction.login,
-    serverError
+  const { isLoggingIn, serverError, isError } = useSelector(
+    state => state.login
   );
+  const {
+    renderFormInputs,
+    validateForm,
+    handleSubmit,
+    handleServerError
+  } = useForm(loginForm, userAction.login, serverError);
   useEffect(() => {
     dispatch(userAction.logOut());
   }, []);
 
+  useEffect(() => {
+    if (!isLoggingIn) {
+      handleServerError();
+    }
+  }, [isError]);
   return (
     <div className="login">
       <div className="login__container">
         <h3>Log into your account</h3>
-        {serverError && <h1>{serverError}</h1>}
         <form onSubmit={handleSubmit}>
           {renderFormInputs()}
           <p>
@@ -38,9 +45,6 @@ const Login = () => {
           </button>
         </form>
       </div>
-
-      <br />
-      <br />
       <div className="login__footer">
         <p>You don`t have an account?</p>
         <Link to="/register">

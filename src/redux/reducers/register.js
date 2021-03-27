@@ -6,7 +6,9 @@ const {
 } = userConstants;
 
 const intialState = {
-  isLoading: false
+  isLoading: false,
+  serverError: null,
+  isError: false
 };
 
 const register = (state = intialState, action) => {
@@ -14,18 +16,22 @@ const register = (state = intialState, action) => {
     case USERS_REGISTER_REQUEST:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        newUser: action.user,
+        isError: false
       };
     case USERS_REGISTER_SUCCESS:
       return {
         ...state,
-        isLoading: false
+        newUser: action.user,
+        isLoading: false,
+        isError: false
       };
     case USERS_REGISTER_FAILURE:
       return {
         ...state,
         isError: true,
-        errorMessage: action.error,
+        serverError: action.error,
         isLoading: false
       };
     default:

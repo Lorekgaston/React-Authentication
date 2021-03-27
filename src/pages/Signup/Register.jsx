@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { userAction } from '../../redux/actions/user';
 import { registerForm } from '../../helpers/formConfig';
@@ -7,11 +8,21 @@ import useForm from '../../hooks/useForm';
 import './Register.scss';
 
 const Register = () => {
-  const { renderFormInputs, validateForm, handleSubmit } = useForm(
-    registerForm,
-    userAction.register
+  const { isLoading, serverError, isError } = useSelector(
+    state => state.register
   );
+  const {
+    renderFormInputs,
+    validateForm,
+    handleSubmit,
+    handleServerError
+  } = useForm(registerForm, userAction.register, serverError);
 
+  useEffect(() => {
+    if (!isLoading) {
+      handleServerError();
+    }
+  }, [isError]);
   return (
     <div className="Register">
       <div className="Register__container">
@@ -27,7 +38,7 @@ const Register = () => {
             type="submit"
             disabled={!validateForm()}
           >
-            Sign Up
+            {isLoading ? 'Signing' : 'Sign Up'}
           </button>
         </form>
       </div>
