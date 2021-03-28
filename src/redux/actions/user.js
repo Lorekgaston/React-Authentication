@@ -55,8 +55,32 @@ const register = newUser => {
   };
 };
 
+const getAllUsers = user => {
+  const request = loading => {
+    return { type: userConstants.GET_ALL_USERS_REQUEST, loading };
+  };
+  const success = users => {
+    return { type: userConstants.GET_ALL_USERS_SUCCESS, users };
+  };
+  const failure = error => {
+    return { type: userConstants.GET_ALL_USERS_FAILURE, error };
+  };
+
+  return async dispatch => {
+    dispatch(request(true));
+    try {
+      const users = await userService.getAllUsers(user);
+      dispatch(success(users));
+      console.log(users);
+    } catch (err) {
+      dispatch(failure(err.response.data.message));
+    }
+  };
+};
+
 export const userAction = {
   login,
   logOut,
-  register
+  register,
+  getAllUsers
 };

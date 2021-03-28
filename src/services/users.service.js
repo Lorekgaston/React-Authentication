@@ -18,7 +18,18 @@ const logout = () => {
   localStorage.removeItem('user');
 };
 const getUser = id => {
-  return axios.get(`${BASE_URL}/${id}`);
+  return axios.get(`${BASE_URL}${id}`);
+};
+const getAllUsers = user => {
+  const { token } = user;
+  console.log(user.token);
+  if (user) {
+    return axios.get(`${BASE_URL}all`, {
+      headers: {
+        Authorization: `Bearer${token}`
+      }
+    });
+  }
 };
 
 const checkIfValidToken = () => {
@@ -49,5 +60,6 @@ export const userService = {
   logout,
   getUser,
   checkIfValidToken,
-  handleResponse
+  handleResponse,
+  getAllUsers
 };

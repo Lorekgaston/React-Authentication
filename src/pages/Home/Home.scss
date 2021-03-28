@@ -1,0 +1,86 @@
+.Home {
+  min-height: 100vh;
+  background-color: #eaeded;
+  cursor: default;
+  &__userInfo {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__userList {
+    height: 70%;
+
+    &_list {
+      width: 50%;
+      height: 100%;
+      margin: 0 auto;
+      padding: 1em;
+      border-radius: 5px;
+      background: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+      & > ul {
+        width: 100%;
+        background: #ffffff;
+        & > li {
+          height: 4em;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          list-style: none;
+          border-top: 0.5px solid #e9e9e9;
+        }
+        & :nth-child(1) {
+          border-top: none;
+        }
+      }
+    }
+  }
+}
+
+.Icon {
+  width: 5%;
+  display: flex;
+  justify-content: flex-end;
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.1em;
+    height: 2.1em;
+    border-radius: 100%;
+    margin: 0;
+    transition: transform 0.3s ease-in-out, background-color 0.2s ease-in-out;
+    will-change: transform, background-color;
+    cursor: pointer;
+    &:hover {
+      transform: translateY(-0.7px);
+      // background-color: rgba(39, 124, 170, 0.1);
+      background-color: rgba(22, 197, 145, 0.1);
+    }
+  }
+}
+.Avatar {
+  width: 5%;
+  margin-right: 1em;
+}
+.Username {
+  width: 90%;
+  & h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #455a64;
+    margin: 5px 0px 0px;
+  }
+  & span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #4f5f66;
+    margin: 1px 0px;
+  }
+}
+
+.MuiAvatar-root.MuiAvatar-circle.MuiAvatar-colorDefault {
+  background: var(--color-random);
+}

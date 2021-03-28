@@ -2,13 +2,16 @@
   --color-green: #16c591;
   --color-dark-green: #1d9974;
   --color-blue: #277caa;
+  --colot-light: #f6f9fc;
   --color-font-green: #f4fffc;
   --color-font-white: #e1f0ff;
+  --background-blue: rgba(39, 124, 170, 0.1);
 }
 
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 body {
   margin: 0;
