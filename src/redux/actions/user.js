@@ -70,8 +70,7 @@ const getAllUsers = user => {
     dispatch(request(true));
     try {
       const users = await userService.getAllUsers(user);
-      dispatch(success(users));
-      console.log(users);
+      dispatch(success(users.data));
     } catch (err) {
       dispatch(failure(err.response.data.message));
     }

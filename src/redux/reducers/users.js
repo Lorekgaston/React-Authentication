@@ -8,7 +8,7 @@ const {
 
 const initialState = {
   isLoading: false,
-  users: null,
+  userList: null,
   isError: false,
   errorMessage: ''
 };
@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        data: action.users
+        userList: action.users
       };
     case GET_ALL_USERS_FAILURE:
       return {

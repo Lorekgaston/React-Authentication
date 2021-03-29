@@ -24,9 +24,9 @@ const getAllUsers = user => {
   const { token } = user;
   console.log(user.token);
   if (user) {
-    return axios.get(`${BASE_URL}all`, {
+    return axios.get(`${BASE_URL}`, {
       headers: {
-        Authorization: `Bearer${token}`
+        Authorization: `Bearer ${token}`
       }
     });
   }
