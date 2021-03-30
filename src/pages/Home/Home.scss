@@ -1,151 +1,118 @@
 .Home {
   min-height: 100vh;
-  background-color: #eaeded;
-  background-color: #eef5f9;
   cursor: default;
-  &__userInfo {
-    width: 100%;
-    height: 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  &__Header {
+    height: 35vh;
+    background-image: linear-gradient(
+        360deg,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.1)
+      ),
+      url('../../japan-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
   }
-  &__userList {
-    height: 70%;
-
-    &_list {
-      width: 30%;
-      height: 100%;
-      margin: 0 auto;
-      padding: 1em;
-      border-radius: 5px;
-      background: #ffffff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
-      & > ul {
-        width: 100%;
-        background: #ffffff;
-        & > li {
-          padding: 0.8em 0.3em;
-          display: flex;
-          align-items: center;
-          list-style: none;
-          border-top: 0.5px solid #e9e9e9;
-          &:hover {
-            box-shadow: -2px 0px 0px 0px var(--color-green);
-          }
-        }
-        & :nth-child(1) {
-          border-top: none;
-        }
-      }
-    }
-  }
-}
-
-.Menu {
-  position: absolute;
-  padding: 0.8em 0.3em;
-  background-color: #ffffff;
-  top: 2.2em;
-  min-height: 3em;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-  &__list {
-    width: 100%;
-  }
-  &__listItem {
+  &__Bottom {
     position: relative;
-    display: flex;
-    list-style: none;
-    padding: 0 0.5em;
-    border-top: 0.5px solid #e9e9e9;
-    cursor: pointer;
-    & :hover {
-      color: var(--color-green);
-    }
-    & span {
+    &_user {
+      position: absolute;
+      top: -4em;
+      left: 20%;
+      background-color: #ffffff;
+      width: 60%;
+      height: 65vh;
       display: flex;
-      padding: 0.27em 0;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
     }
   }
 }
 
-.RolesMenu {
-  position: absolute;
-  display: none;
-  left: 4.5em;
-  padding: 0.8em 0.3em;
-  background-color: #ffffff;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-  &__rolesList {
-    width: 100%;
-  }
-  &__roles {
-    list-style: none;
-    padding: 0 0.5em;
-    border-top: 0.5px solid #e9e9e9;
-    cursor: pointer;
-    & :hover {
-      color: var(--color-green);
-    }
-    & span {
-      display: flex;
-      padding: 0.27em 0;
-    }
-  }
-}
-
-.Icon {
-  width: 10%;
-  display: flex;
-  justify-content: flex-end;
+.Avatar {
   position: relative;
+  width: 35%;
+  height: 20%;
+  margin: 0 auto;
   &__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 2.1em;
-    height: 2.1em;
-    border-radius: 100%;
-    margin: 0;
-    transition: transform 0.3s ease-in-out, background-color 0.2s ease-in-out;
-    will-change: transform, background-color;
-    cursor: pointer;
-    &:hover {
-      transform: translateY(-0.7px);
-      // background-color: rgba(39, 124, 170, 0.1);
-      background-color: rgba(22, 197, 145, 0.6);
+    position: relative;
+    width: 134px;
+    margin: 0 auto;
+
+    &_image {
+      width: 134px;
+      height: 134px;
+      position: absolute;
+      top: -4em;
     }
   }
 }
+.MuiAvatar-root.MuiAvatar-circle.MuiAvatar-colorDefault {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0px 2px 1px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+}
 
-.Username {
-  width: 80%;
+.Info {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  & span {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: #4f5f66;
-    padding: 0.1em 0;
-  }
-  & h6 {
-    font-size: 1rem;
+  align-items: center;
+  margin-top: 2em;
+  &__name {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 0.5em;
     font-weight: 600;
-    color: #455a64;
-    padding: 0.1em 0;
-    line-height: 0.9;
+    line-height: 1;
+  }
+  &__rest {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+    color: #939e9b;
+    text-align: center;
+
+    & > h6 {
+      font-size: 1.5rem;
+      padding: 0.4em;
+      font-weight: 500;
+    }
   }
 }
 
-.MuiAvatar-root.MuiAvatar-circle.MuiAvatar-colorDefault {
+.LogOutButton {
+  margin-top: 1.4rem;
   background-color: var(--color-green);
-  width: 2.4em;
-  height: 2.4em;
-  margin: 0 0.8em;
-  font-weight: 500;
+  color: var(--color-font-green);
+  border-radius: 10px;
+  width: 32%;
+  margin: 0 auto;
+  margin-top: 6em;
+  height: 3em;
+  border: 1px solid;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  will-change: transform, box-shadow;
+  &:hover {
+    transition: transform 0.2s ease-in-out;
+    transform: translateY(-0.5px);
+    box-shadow: 0px 0.5px 1px 0px rgba(101, 192, 78, 0.4);
+  }
+  &:active {
+    transform: translateY(0px);
+    box-shadow: none;
+  }
+  &:disabled {
+    background-color: #f9f9f9;
+    color: #d4d4d4;
+    border: none;
+    cursor: not-allowed;
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
 }
