@@ -55,7 +55,7 @@ const register = newUser => {
   };
 };
 
-const getAllUsers = user => {
+const getAllUsers = () => {
   const request = loading => {
     return { type: userConstants.GET_ALL_USERS_REQUEST, loading };
   };
@@ -69,9 +69,13 @@ const getAllUsers = user => {
   return async dispatch => {
     dispatch(request(true));
     try {
-      const users = await userService.getAllUsers(user);
+      const users = await userService.getAllUsers();
       dispatch(success(users.data));
     } catch (err) {
+      console.log(err.response);
+      if (err) {
+        history.push('/login');
+      }
       dispatch(failure(err.response.data.message));
     }
   };

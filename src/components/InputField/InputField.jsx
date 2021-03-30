@@ -35,6 +35,7 @@ const InputField = ({
         )}
       </label>
       <input
+        autoComplete="off"
         className={
           errorMessage && !isValid
             ? 'InputContainer__input inputError'

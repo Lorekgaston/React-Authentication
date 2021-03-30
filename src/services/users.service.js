@@ -20,9 +20,11 @@ const logout = () => {
 const getUser = id => {
   return axios.get(`${BASE_URL}${id}`);
 };
-const getAllUsers = user => {
+const getAllUsers = () => {
+  const user = JSON.parse(localStorage.getItem('user'));
   const { token } = user;
-  console.log(user.token);
+  console.log(user);
+
   if (user) {
     return axios.get(`${BASE_URL}`, {
       headers: {
@@ -36,30 +38,11 @@ const checkIfValidToken = () => {
   return axios.post(`${BASE_URL}tokenIsvalid`, null);
 };
 
-const handleResponse = response => {
-  return response.text().then(text => {
-    const data = text && JSON.parse(text);
-    if (!response.ok) {
-      if (response.status === 401) {
-        // auto logout if 401 response returned from api
-        logout();
-        window.location.reload();
-      }
-
-      const error = (data && data.message) || response.statusText;
-      return Promise.reject(error);
-    }
-
-    return data;
-  });
-};
-
 export const userService = {
   register,
   login,
   logout,
   getUser,
   checkIfValidToken,
-  handleResponse,
   getAllUsers
 };

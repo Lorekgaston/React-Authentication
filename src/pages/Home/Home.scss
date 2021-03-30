@@ -31,8 +31,7 @@
           list-style: none;
           border-top: 0.5px solid #e9e9e9;
           &:hover {
-            // border-left: 2px solid var(--color-green);
-            box-shadow: -2px 0px 0px 0px var(--color-random);
+            box-shadow: -2px 0px 0px 0px var(--color-green);
           }
         }
         & :nth-child(1) {
@@ -43,10 +42,67 @@
   }
 }
 
+.Menu {
+  position: absolute;
+  padding: 0.8em 0.3em;
+  background-color: #ffffff;
+  top: 2.2em;
+  min-height: 3em;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  &__list {
+    width: 100%;
+  }
+  &__listItem {
+    position: relative;
+    display: flex;
+    list-style: none;
+    padding: 0 0.5em;
+    border-top: 0.5px solid #e9e9e9;
+    cursor: pointer;
+    & :hover {
+      color: var(--color-green);
+    }
+    & span {
+      display: flex;
+      padding: 0.27em 0;
+    }
+  }
+}
+
+.RolesMenu {
+  position: absolute;
+  display: none;
+  left: 4.5em;
+  padding: 0.8em 0.3em;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  &__rolesList {
+    width: 100%;
+  }
+  &__roles {
+    list-style: none;
+    padding: 0 0.5em;
+    border-top: 0.5px solid #e9e9e9;
+    cursor: pointer;
+    & :hover {
+      color: var(--color-green);
+    }
+    & span {
+      display: flex;
+      padding: 0.27em 0;
+    }
+  }
+}
+
 .Icon {
   width: 10%;
   display: flex;
   justify-content: flex-end;
+  position: relative;
   &__container {
     display: flex;
     justify-content: center;
@@ -61,7 +117,7 @@
     &:hover {
       transform: translateY(-0.7px);
       // background-color: rgba(39, 124, 170, 0.1);
-      background-color: rgba(22, 197, 145, 0.1);
+      background-color: rgba(22, 197, 145, 0.6);
     }
   }
 }
@@ -87,7 +143,7 @@
 }
 
 .MuiAvatar-root.MuiAvatar-circle.MuiAvatar-colorDefault {
-  background: var(--color-random);
+  background-color: var(--color-green);
   width: 2.4em;
   height: 2.4em;
   margin: 0 0.8em;
