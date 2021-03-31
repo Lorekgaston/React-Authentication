@@ -1,6 +1,6 @@
 ## React login form
 
-## Backend code Here [React-Auth](https://github.com/Lorekgaston/Auth-server)
+## Backend code Here [Node.js auth server](https://github.com/Lorekgaston/Auth-server)
 
 ### Project Setup
 
