@@ -1,6 +1,6 @@
-## Login and register form
+## React login form
 
-## Watch backend code Here. [React-Auth](https://github.com/Lorekgaston/Auth-server)
+## Backend code Here [React-Auth](https://github.com/Lorekgaston/Auth-server)
 
 ### Project Setup
 
