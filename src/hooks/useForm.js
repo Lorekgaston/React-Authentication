@@ -44,6 +44,7 @@ const useForm = (objForm, action, serverError) => {
     },
     [form]
   );
+
   const validateForm = useCallback(() => {
     let isValid = true;
     const inputs = Object.values(form);
@@ -66,7 +67,6 @@ const useForm = (objForm, action, serverError) => {
       Object.assign(userObj, { [values]: completedForm[values].value });
     }
     if (validateForm()) {
-      console.log(userObj);
       dispatch(action(userObj, from));
     }
   };

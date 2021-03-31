@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://127.0.0.1:9000/api/v1/users/';
+const BASE_URL = 'https://reactauthserver.herokuapp.com/api/v1/users/';
 
 const register = async newUser => {
   return await axios.post(`${BASE_URL}signup`, newUser);
@@ -17,9 +17,11 @@ const login = async loginUser => {
 const logout = () => {
   localStorage.removeItem('user');
 };
+
 const getUser = id => {
   return axios.get(`${BASE_URL}${id}`);
 };
+
 const getAllUsers = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const { token } = user;

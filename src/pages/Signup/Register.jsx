@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { userAction } from '../../redux/actions/user';
-import { registerForm } from '../../helpers/formConfig';
+
 import useForm from '../../hooks/useForm';
+import { registerForm } from '../../helpers/formConfig';
 
 import './Register.scss';
 

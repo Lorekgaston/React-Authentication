@@ -26,6 +26,7 @@ const login = (loginUser, from) => {
     }
   };
 };
+
 const logOut = () => {
   userService.logout();
   return { type: userConstants.USERS_LOGOUT };

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 
 import { Avatar } from '@material-ui/core';
+
 import './Home.scss';
 
 const Home = () => {
@@ -23,7 +24,7 @@ const Home = () => {
           </div>
           <div className="Info">
             <div className="Info__name">
-              <h1>Welcom {user.user.userName}!</h1>
+              <h1>Welcome {user.user.userName}!</h1>
             </div>
             <div className="Info__rest">
               <h6>{user.user.role}</h6>

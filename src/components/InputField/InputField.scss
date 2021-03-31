@@ -17,8 +17,6 @@
     padding: 7px 10px;
     margin: 2px 0;
     outline-color: rgba(39, 124, 170, 0.7);
-    //outline: none;
-    //border: 1px solid lightgrey;
     border: none;
     background: #e5e5e5;
     border-radius: 5px;
@@ -28,9 +26,6 @@
   }
 }
 .ErrorMessage {
-  // position: absolute;
-  // top: 40px;
-  // left: 0;
   color: rgb(255, 15, 15);
   font-weight: 600;
   font-size: 11px;
@@ -58,22 +53,3 @@
   font-size: 1rem;
   color: var(--color-dark-green);
 }
-
-// &__inputContainer {
-//   position: relative;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   border: 1px solid lightgrey;
-//   border-radius: 10px;
-//   margin-bottom: 10px;
-//   &_ &_error {
-//     position: absolute;
-//     top: 40px;
-//     left: 0;
-//     color: rgb(255, 15, 15);
-//     font-weight: 600;
-//     font-size: 11px;
-//   }
-// }

@@ -56,7 +56,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// {serverError && (
-//   <span className="login__container_serverError">{serverError}</span>
-// )}
